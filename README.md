@@ -1,5 +1,8 @@
 # Pasos para iniciar el proyecto
 
+    git clone https://github.com/Jepisa/example-app.git
+    cd example-app 
+
 1- correr:
 
     docker run --rm \
