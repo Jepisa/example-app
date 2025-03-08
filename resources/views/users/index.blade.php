@@ -29,7 +29,7 @@
                     </tr>
                 </thead>
                 <tbody class="text-gray-600 text-sm">
-                    @foreach ($users as $user)  
+                    {{-- @foreach ($users as $user)  
                         <tr class="border-b border-gray-300 hover:bg-gray-100">
                             <td class="py-2 px-4">
                                 <a href="{{ route('users.show', ['user' => $user->id]) }}">{{ $user->id }}</a>
@@ -39,13 +39,13 @@
                             <td class="py-2 px-4">{{ $user->created_at->format('d/m/Y') }}</td>
                         </tr>
                             
-                    @endforeach
+                    @endforeach --}}
                 </tbody>
             </table>
 
             <!-- Paginación -->
             <div class="mt-4">
-                {{ $users->links() }}
+                {{-- {{ $users->links() }} --}}
             </div>
         </div>
     </div>

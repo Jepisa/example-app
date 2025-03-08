@@ -32,29 +32,25 @@ class UserController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
-        $validatedData = $request->validated();
-
-        User::create($validatedData);
-
-        session()->flash('success', 'Se creó con éxito!');
+        User::create($request->validated());
 
         return redirect()->route('users.index');
-
-        //guardar al usuario de lo que se envia en el formulario que se mando en create()
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(string $id)
     {
+        $user = User::findOrFail($id);
+
         return view('users.show', compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(string $id)
     {
         $user = User::findOrFail($id);
 
@@ -64,25 +60,20 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UserUpdateRequest $request, $id)
+    public function update(UserUpdateRequest $request, string $id)
     {
         $user = User::findOrFail($id);
+        $user->update($request->validated());
 
-        $user->name = $request->name;
-        $user->email = $request->email;
-
-        $user->save();
-
-        return redirect()->route('users.show', ['user' => $user->id]);
+        return redirect()->route('users.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(string $id)
     {
         $user = User::findOrFail($id);
-
         $user->delete();
 
         return redirect()->route('users.index');
